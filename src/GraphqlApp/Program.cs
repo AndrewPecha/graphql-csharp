@@ -12,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddGraphQLServer()
     .AddType<GraphQLTypes.PizzaDoughType>()
-    .AddQueryType<Query>();
+    .AddQueryType<Query>()
+    .AddFiltering();
 
 var app = builder.Build();
 
