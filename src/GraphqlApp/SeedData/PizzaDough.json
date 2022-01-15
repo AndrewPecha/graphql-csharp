@@ -1,0 +1,34 @@
+[
+    {
+        "RecipeName": "HG",
+        "MixTimeInMinutes": 1.5,
+        "Ingredients": [
+            {
+                "IngredientName": "water",
+                "Amount": 100,
+                "UOM": "fl oz"
+            },
+            {
+                "IngredientName": "flour",
+                "Amount": 50,
+                "UOM": "lb"
+            }
+        ]
+    },
+    {
+        "RecipeName": "SAV",
+        "MixTimeInMinutes": 3.5,
+        "Ingredients": [
+            {
+                "IngredientName": "water",
+                "Amount": 60,
+                "UOM": "fl oz"
+            },
+            {
+                "IngredientName": "flour",
+                "Amount": 35,
+                "UOM": "lb"
+            }
+        ]
+    }
+]
