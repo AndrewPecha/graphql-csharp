@@ -15,7 +15,7 @@ namespace GraphqlApp.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "Get All the Pizza Dough!!")]
+        [HttpGet]
         public async Task<IEnumerable<PizzaDough>> Get()
         {
             var client = new MongoClient("mongodb://localhost:27017");

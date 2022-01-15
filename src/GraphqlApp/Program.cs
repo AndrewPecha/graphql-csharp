@@ -1,3 +1,4 @@
+using GraphqlApp;
 using GraphqlApp.GraphQL;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
