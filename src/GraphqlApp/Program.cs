@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddGraphQLServer()
     .AddType<GraphQLTypes.PizzaDoughType>()
     .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
     .AddFiltering();
 
 var app = builder.Build();
