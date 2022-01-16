@@ -9,7 +9,8 @@ public class GraphQLTypes
     {
         protected override void Configure(IObjectTypeDescriptor<PizzaDough> descriptor)
         {
-            descriptor.Ignore(x => x._id);
+            //leaving this here as an example of additional configuration
+            // descriptor.Ignore(x => x._id);
         }
     }
     
@@ -17,7 +18,8 @@ public class GraphQLTypes
     {
         protected override void Configure(IFilterInputTypeDescriptor<PizzaDough> descriptor)
         {
-            descriptor.Ignore(x => x._id);
+            //leaving this here as an example of additional configuration
+            // descriptor.Ignore(x => x._id);
         }
     }
 }
