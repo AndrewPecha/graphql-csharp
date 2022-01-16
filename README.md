@@ -4,7 +4,7 @@ https://developer.okta.com/blog/2020/08/24/simple-graphql-csharp
 
 simple mutation:
 
-```json
+```graphql
 addPizzaDough(
     pizzaDoughInput: {
       recipeName: "HGR"
