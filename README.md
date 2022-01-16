@@ -28,3 +28,5 @@ updatePizzaDough(
     }
   )
 ```
+
+SignalR added based on the instructions at https://code-maze.com/netcore-signalr-angular-realtime-charts/
