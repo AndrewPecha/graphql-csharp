@@ -1,5 +1,6 @@
 using GraphqlApp;
 using GraphqlApp.GraphQL;
+using GraphqlApp.HubConfig;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
 
@@ -52,5 +53,6 @@ app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<PizzaDoughHub>("/pizzaDough");
 
 app.Run();
