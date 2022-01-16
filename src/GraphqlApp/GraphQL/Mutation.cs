@@ -13,20 +13,40 @@ public class Mutation
         _dataBase = client.GetDatabase("GraphQL_Test");
     }
     
-    public async Task<bool> AddPizzaDough(PizzaDoughInput pizzaDoughInput)
+    public async Task<bool> AddPizzaDough(PizzaDoughAddInput input)
     {
         var collection = _dataBase.GetCollection<PizzaDough>("PizzaDough");
         await collection.InsertOneAsync(new PizzaDough
         {
-            RecipeName = pizzaDoughInput.RecipeName,
-            MixTimeInMinutes = pizzaDoughInput.MixTimeInMinutes,
-            Ingredients = pizzaDoughInput.Ingredients
+            RecipeName = input.RecipeName,
+            MixTimeInMinutes = input.MixTimeInMinutes,
+            Ingredients = input.Ingredients
         });
 
         return true;
     }
+    
+    public async Task<bool> UpdatePizzaDough(PizzaDoughUpdateInput input)
+    {
+        var collection = _dataBase.GetCollection<PizzaDough>("PizzaDough");
+        await collection
+            .ReplaceOneAsync(x => x.Id == input.Id, new PizzaDough
+            {
+                Id = input.Id,
+                RecipeName = input.RecipeName,
+                MixTimeInMinutes = input.MixTimeInMinutes,
+                Ingredients = input.Ingredients
+            });
 
-    public class PizzaDoughInput
+        return true;
+    }
+
+    public class PizzaDoughUpdateInput : PizzaDoughAddInput
+    {
+        public string Id { get; set; }
+    }
+    
+    public class PizzaDoughAddInput
     {
         public string RecipeName { get; set; }
         public decimal MixTimeInMinutes { get; set; }
