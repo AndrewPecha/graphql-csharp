@@ -3,9 +3,20 @@ using GraphqlApp.GraphQL;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
 
+var corsPolicyName = "CorsPolicy";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddCors(options => 
+{ 
+    options.AddPolicy(corsPolicyName, corsPolicyBuilder => corsPolicyBuilder
+        .WithOrigins("http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials()); 
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -35,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGraphQL("/api");
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
