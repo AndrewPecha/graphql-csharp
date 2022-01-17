@@ -1,4 +1,5 @@
 export class PizzaDoughModel {
+  id: string;
   recipeName: string;
   mixTimeInMinutes: number;
   ingredients: Ingredient[];

@@ -8,5 +8,26 @@ export class PizzaDoughService {
 
   pizzaDoughs: PizzaDoughModel[];
 
-  getPizzaDough() {}
+  getPizzaDough() {
+    this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            pizzaDoughs {
+              id
+              recipeName
+              mixTimeInMinutes
+              ingredients {
+                ingredientName
+                amount
+                uOM
+              }
+            }
+          }
+        `,
+      })
+      .valueChanges.subscribe((result: any) => {
+        this.pizzaDoughs = result.data.pizzaDoughs;
+      });
+  }
 }
