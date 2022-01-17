@@ -1,4 +1,6 @@
+using GraphqlApp.HubConfig;
 using GraphqlApp.Models;
+using Microsoft.AspNetCore.SignalR;
 using MongoDB.Driver;
 
 namespace GraphqlApp.GraphQL;
@@ -6,9 +8,12 @@ namespace GraphqlApp.GraphQL;
 public class Mutation
 {
     private readonly IMongoDatabase _dataBase;
+    private readonly IHubContext<PizzaDoughHub> _hub;
 
-    public Mutation()
+    public Mutation(IHubContext<PizzaDoughHub> hub)
     {
+        _hub = hub;
+        
         var client = new MongoClient("mongodb://localhost:27017");
         _dataBase = client.GetDatabase("GraphQL_Test");
     }
@@ -16,12 +21,15 @@ public class Mutation
     public async Task<bool> AddPizzaDough(PizzaDoughAddInput input)
     {
         var collection = _dataBase.GetCollection<PizzaDough>("PizzaDough");
-        await collection.InsertOneAsync(new PizzaDough
+        var pizzaDoughToAdd = new PizzaDough
         {
             RecipeName = input.RecipeName,
             MixTimeInMinutes = input.MixTimeInMinutes,
             Ingredients = input.Ingredients
-        });
+        };
+        await collection.InsertOneAsync(pizzaDoughToAdd);
+
+        await _hub.Clients.All.SendAsync("pizzaDoughAdd", pizzaDoughToAdd);
 
         return true;
     }
