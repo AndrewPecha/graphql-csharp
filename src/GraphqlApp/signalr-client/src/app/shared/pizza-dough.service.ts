@@ -27,6 +27,7 @@ export class PizzaDoughService {
         `,
       })
       .valueChanges.subscribe((result: any) => {
+        console.log(result);
         this.pizzaDoughs = result.data.pizzaDoughs;
       });
   }
