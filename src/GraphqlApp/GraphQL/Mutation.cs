@@ -29,7 +29,7 @@ public class Mutation
         };
         await collection.InsertOneAsync(pizzaDoughToAdd);
 
-        await _hub.Clients.All.SendAsync("pizzaDoughAdd");
+        await _hub.Clients.All.SendAsync("pizzaDoughAdd", pizzaDoughToAdd);
 
         return true;
     }
