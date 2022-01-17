@@ -7,9 +7,10 @@ import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { HttpClientModule } from '@angular/common/http';
+import { PizzaDoughListComponent } from './pizza-dough-list/pizza-dough-list.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PizzaDoughListComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { PizzaDoughModel } from './pizza-dough.model';
 
 @Injectable({ providedIn: 'root' })
 export class PizzaDoughService {
   constructor(private apollo: Apollo) {}
 
-  pizzaDoughs: PizzaDoughModel[];
+  getAllPizzaDough = gql`
+    {
+      pizzaDoughs {
+        id
+        recipeName
+        mixTimeInMinutes
+        ingredients {
+          ingredientName
+          amount
+          uOM
+        }
+      }
+    }
+  `;
 
-  getPizzaDough() {
-    this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            pizzaDoughs {
-              id
-              recipeName
-              mixTimeInMinutes
-              ingredients {
-                ingredientName
-                amount
-                uOM
-              }
-            }
-          }
-        `,
-      })
-      .valueChanges.subscribe((result: any) => {
-        console.log(result);
-        this.pizzaDoughs = result.data.pizzaDoughs;
-      });
+  getPizzaDough(): QueryRef<any> {
+    return this.apollo.watchQuery({
+      query: this.getAllPizzaDough,
+    });
   }
 }
