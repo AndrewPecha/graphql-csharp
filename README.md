@@ -29,4 +29,6 @@ updatePizzaDough(
   )
 ```
 
-SignalR added based on the instructions at https://code-maze.com/netcore-signalr-angular-realtime-charts/
+SignalR added based on the instructions at https://code-maze.com/netcore-signalr-angular-realtime-charts/  
+Adding apollo based on this: https://apollo-angular.com/docs/get-started  
+Using an apollo pre-release based on this: https://github.com/kamilkisiela/apollo-angular/issues/1728

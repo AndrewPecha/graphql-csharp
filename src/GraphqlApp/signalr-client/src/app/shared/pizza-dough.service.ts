@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Apollo, gql } from 'apollo-angular';
 import { PizzaDoughModel } from './pizza-dough.model';
 
 @Injectable()
 export class PizzaDoughService {
-  constructor(private http: HttpClient) {}
+  constructor(private apollo: Apollo) {}
 
-  baseUri: string = 'https://localhost:7033/';
+  pizzaDoughs: PizzaDoughModel[];
 
   getPizzaDough() {}
 }
